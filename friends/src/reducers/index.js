@@ -1,7 +1,7 @@
 import { /*actions to be added here*/ } from '../actions';
 
 const initialState = {
-  friends: []
+  friendsList: []
 }
 
 const rootReducer = (state = initialState, action) => {
