@@ -1,4 +1,4 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions';
+import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, FETCH_START, FETCH_SUCCESS, FETCH_FAILURE } from '../actions';
 
 const initialState = {
   friendsList: [],
@@ -15,18 +15,35 @@ const rootReducer = (state = initialState, action) => {
         loginError: ''
       }
     case LOGIN_SUCCESS:
-      console.log('in reducer, setting state success');
       return {
         ...state,
         isLoggingIn: false,
         loginError: ''
       }
     case LOGIN_FAILURE:
-      console.log('in reducer, setting state failure');
       return {
         ...state,
         isLoggingIn: false,
         loginError: 'Failed Login'
+      }
+    case FETCH_START:
+      return {
+        ...state,
+        isFetching: true,
+        error: ''
+      }
+    case FETCH_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        error: '',
+        friendsList: action.payload
+      }
+    case FETCH_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
       }
     default:
       return state;
